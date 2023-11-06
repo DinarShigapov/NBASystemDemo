@@ -1,0 +1,84 @@
+﻿<Page x:Class="NBASystem.Pages.ManageTeamsPages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ManageTeamsPages">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Conference  "
+                           VerticalAlignment="Center"/>
+                <ComboBox x:Name="CBConference"
+                          DisplayMemberPath="Name"
+                          Height="25"
+                          SelectionChanged="CBConference_SelectionChanged"
+                          Width="100"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal">
+                <TextBlock Text="Division  "
+                           VerticalAlignment="Center"/>
+                <ComboBox x:Name="CBDivision"
+                          Grid.Column="2"
+                          DisplayMemberPath="Name"
+                          Height="25"
+                          Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="4">
+                <TextBlock Text="Name  "
+                           VerticalAlignment="Center"/>
+                <TextBox x:Name="TBSearch"
+                         Height="25"
+                          Width="100"/>
+            </StackPanel>
+            <Button Content="Search"
+                    Grid.Column="6"
+                    Padding="15 0"
+                    x:Name="BSearch"
+                    Click="BSearch_Click"/>
+            <Button Content="+Add a new team"
+                    Grid.Column="8"
+                    Padding="15 0"
+                    x:Name="BAddTeam"
+                    Click="BAddTeam_Click"/>
+        </Grid>
+        <DataGrid Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding MainImage}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=TeamName}" Width="*"/>
+                <DataGridTextColumn Header="Conference" Binding="{Binding Path=Division.Conference.Name}" Width="*"/>
+                <DataGridTextColumn Header="Division" Binding="{Binding Path=Division.Name}" Width="*"/>
+                <DataGridTextColumn Header="Coach" Binding="{Binding Path=Coach}" Width="*"/>
+                <DataGridTextColumn Header="TotalSalary($ Milion)" Binding="{Binding Path=TotalSalary}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

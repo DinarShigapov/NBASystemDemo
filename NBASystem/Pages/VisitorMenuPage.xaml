@@ -1,0 +1,59 @@
+﻿<Page x:Class="NBASystem.Pages.VisitorMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Visitor Menu">
+
+    <Grid>
+        <Border BorderThickness="1"
+                BorderBrush="Black"
+                Padding="30"
+                Margin="30 0"
+                VerticalAlignment="Center">
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button Content="Teams"
+                        x:Name="BTeams"
+                        Click="BTeams_Click"
+                        Width="150"
+                        Height="60"
+                        Style="{StaticResource BtnStyle}"/>
+                <Button Content="Players"
+                        x:Name="BPlayers"
+                        Click="BPlayers_Click"
+                        Width="150"
+                        Height="60"
+                        Grid.Column="2"
+                        Style="{StaticResource BtnStyle}"/>
+                <Button Content="Matchups"
+                        x:Name="BMatchups"
+                        Click="BMatchups_Click"
+                        Width="150"
+                        Height="60"
+                        Grid.Row="2"
+                        Style="{StaticResource BtnStyle}"/>
+                <Button Content="Photos"
+                        x:Name="BPhotos"
+                        Click="BPhotos_Click"
+                        Width="150"
+                        Height="60"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        Style="{StaticResource BtnStyle}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

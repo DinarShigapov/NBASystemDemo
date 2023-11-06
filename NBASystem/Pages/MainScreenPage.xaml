@@ -1,0 +1,110 @@
+﻿<Page x:Class="NBASystem.Pages.MainScreenPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainScreenPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="NBA Management System"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="25"
+                       Grid.Column="1"/>
+            <TextBlock Text="Добро пожаловать, чтобы воспользоваться этой системой управления NBA, вы можете перенаправляться на разные страницы в соответствии с вашей ролью, нажав кнопки ниже."
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="15"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"/>
+            <Image Source="/Resources/logo.jpg" 
+                   HorizontalAlignment="Left" 
+                   Grid.RowSpan="2"
+                   Width="43" 
+                   Margin="10 0"/>
+        </Grid>
+        <Border Grid.Row="2"
+                BorderThickness="1"
+                BorderBrush="Black"
+                Padding="30"
+                HorizontalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Visitor"
+                        x:Name="BVisitor"
+                        Click="BVisitor_Click"
+                        Width="150"
+                        Height="60"
+                        Style="{StaticResource BtnStyle}"/>
+                <Button Content="Admin"
+                        x:Name="BAdmin"
+                        Click="BAdmin_Click"
+                        Width="150"
+                        Height="60"
+                        Grid.Column="2"
+                        Style="{StaticResource BtnStyle}"/>
+            </Grid>
+        </Border>
+        <Border Grid.Row="4"
+                Margin="5">
+            <StackPanel Name="stackPanelSize" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button x:Name="BSlideBack" 
+                        Height="100"
+                        Content="❮"
+                        Click="BSlideBack_Click"/>
+                <ListView x:Name="LVImage" 
+                                  d:ItemsSource="{d:SampleData ItemCount=5}"
+                                  Width="645"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Height="150"
+                                   Width="150"
+                                   Source="{Binding UriSource}"
+                                   Stretch="Uniform"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="BSlideNext" 
+                        Height="100"
+                        Content="❯"
+                        Click="BSlideNext_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

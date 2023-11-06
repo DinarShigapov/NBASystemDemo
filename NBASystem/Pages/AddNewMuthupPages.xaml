@@ -1,0 +1,99 @@
+﻿<Page x:Class="NBASystem.Pages.AddNewMuthupPages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddNewMuthupPages">
+
+    <Grid VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border VerticalAlignment="Center"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Padding="0 40">
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Season.Name, StringFormat='Season: {0}'}"/>
+                    <TextBlock Text="{Binding MatchupType.Name, StringFormat='MatchupType: {0}'}"
+                               Grid.Column="2"
+                               HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Date: "
+                                   VerticalAlignment="Center"/>
+                        <DatePicker x:Name="DPDate"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Column="2"
+                                HorizontalAlignment="Right">
+                        <TextBlock Text="Time: "
+                                   VerticalAlignment="Center"/>
+                        <TextBox Width="100"
+                                 x:Name="TBTime"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Location"/>
+                    <TextBox Grid.Column="2"/>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Team(Away)"/>
+                        <ComboBox x:Name="CBAway"
+                                  DisplayMemberPath="TeamName" SelectionChanged="CBAway_SelectionChanged"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Team(Home)"/>
+                        <ComboBox x:Name="CBHome"
+                                  DisplayMemberPath="TeamName" SelectionChanged="CBHome_SelectionChanged"/>
+                    </StackPanel>
+                    <TextBlock Text="VS"
+                               FontSize="20"
+                               Grid.Column="1"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Grid>
+                
+            </Grid>
+        </Border>
+        <Button Grid.Row="2"
+                Content="Submit"
+                Width="100"/>
+    </Grid>
+</Page>

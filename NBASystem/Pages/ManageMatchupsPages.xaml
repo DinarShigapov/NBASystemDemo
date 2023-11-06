@@ -1,0 +1,94 @@
+﻿<Page x:Class="NBASystem.Pages.ManageMatchupsPages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ManageMatchupsPages">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="10" Margin="0 0 0 -20">
+            <ComboBox x:Name="CbSeasonStart" DisplayMemberPath="Name" Width="100"></ComboBox>
+            <CheckBox x:Name="CCheckBox" Checked="CCheckBox_Checked"></CheckBox>
+            <DatePicker x:Name="CbSeasonEnd"></DatePicker>
+            <Button Content="Search" x:Name="BSearch" Width="80" Click="BSearch_Click"></Button>
+        </StackPanel>
+    
+        <TabControl Grid.Row="1">
+            <TabItem Header="Preseason">
+                <TabItem.Content >
+                    <Grid>
+                        <DataGrid AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      x:Name="DGMatch">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Starttime, StringFormat='yyyy/mm/dd'}"/>
+                                <DataGridTextColumn Header="Matchyp Type" Width="*" Binding="{Binding Team.TeamName}"/>
+                                <DataGridTextColumn Header="Number of Matchup" Width="*" Binding="{Binding Team1.TeamName}"/>
+                                <DataGridTextColumn Header="Time" Width="*" Binding="{Binding Starttime, StringFormat='H:M AM'}"/>
+                                <DataGridTextColumn Header="Location"  Width="*" Binding="{Binding Locatoin}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Finished"  Width="*" Binding="{Binding StatusName}"></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="Update"  Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Update" x:Name="BtUpdate" Click="BtUpdate_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Delete"  Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" x:Name="BtDelete" Click="BtDelete_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Regular Season">
+                <TabItem.Content >
+                    <StackPanel HorizontalAlignment="Center">
+                        <Button Content="+ Add a new mathup" x:Name="BAddNew" Click="BAddNew_Click" Width="150" Margin="10 10 0 5 " HorizontalAlignment="Left"></Button>
+                        <DataGrid AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      x:Name="DGMatchResult" Height="340">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Starttime, StringFormat='yyyy/mm/dd'}"/>
+                                <DataGridTextColumn Header="Matchyp Type" Width="*" Binding="{Binding Team.TeamName}"/>
+                                <DataGridTextColumn Header="Number of Matchup" Width="*" Binding="{Binding Team1.TeamName}"/>
+                                <DataGridTextColumn Header="Time" Width="*" Binding="{Binding Starttime, StringFormat='H:M AM'}"/>
+                                <DataGridTextColumn Header="Location"  Width="*" Binding="{Binding Locatoin}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Finished"  Width="*" Binding="{Binding StatusName}"></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="Update"  Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Update" x:Name="BtUpdate" Click="BtUpdate_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Delete"  Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Delete" x:Name="BtDelete" Click="BtDelete_Click"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Content="Export to Exel" x:Name="BExport" Click="BExport_Click" Width="150" Margin="0 10 10 5 " HorizontalAlignment="Right"></Button>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

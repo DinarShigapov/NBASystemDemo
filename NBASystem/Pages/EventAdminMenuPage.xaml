@@ -1,0 +1,67 @@
+﻿<Page x:Class="NBASystem.Pages.EventAdminMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EventAdminMenuPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Welcome to use this system, you can click the buttons below to navigate to the corresponding page"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Width="400"
+                   Margin="0 50 0 0"/>
+        <Grid HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button Content="Manage Season"
+                        x:Name="BSeason"
+                        Click="BSeason_Click"
+                        Width="200"
+                        Height="60"
+                        Style="{StaticResource BtnStyle}"/>
+                <Button Content="Manage Matchups"
+                        x:Name="BMatchups"
+                        Click="BMatchups_Click"
+                        Width="200"
+                        Height="60"
+                        Grid.Column="2"
+                        Style="{StaticResource BtnStyle}"/>
+                <Button Content="Manage Teams"
+                        x:Name="BTeams"
+                        Click="BTeams_Click"
+                        Width="200"
+                        Height="60"
+                        Grid.Row="2"
+                        Style="{StaticResource BtnStyle}"/>
+                <Button Content="Manage Players"
+                        x:Name="BPlayers"
+                        Click="BPlayers_Click"
+                        Width="200"
+                        Height="60"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        Style="{StaticResource BtnStyle}"/>
+            </Grid>
+    </Grid>
+</Page>

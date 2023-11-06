@@ -1,0 +1,155 @@
+﻿<Page x:Class="NBASystem.Pages.MatchupListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Matchup List">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="&#60;"
+                    Padding="5 0" Click="Button_Click_1"/>
+            <DatePicker SelectedDateChanged="DatePicker_SelectedDateChanged" x:Name="DpSELET"/>
+            <Button Content="&#62;"
+                    Padding="5 0" Click="Button_Click"/>
+        </StackPanel>
+        <Grid Grid.Row="1"
+              Margin="0 10"
+              x:Name="CurrentMatch"
+              HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Team.MainImage}"
+                       Width="100"
+                       Height="100"/>
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Team.TeamName}"/>
+                    <TextBlock Text="(Away)"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Grid.Column="1">
+                <TextBlock Text="VS"
+                           FontSize="35"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Starttime, StringFormat='dd/MM hh:mm'}"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="2">
+                <Image Source="{Binding Team1.MainImage}"
+                       Width="100"
+                       Height="100"/>
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Team1.TeamName}"/>
+                    <TextBlock Text="(Home)"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <DataGrid x:Name="DGMatch"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  Background="Transparent"
+                  HeadersVisibility="None"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  GridLinesVisibility="Horizontal"
+                  d:ItemsSource="{d:SampleData ItemCount=5}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Background="{Binding StatusColor}"
+                                       Text="{Binding StatusName}"
+                                       Padding="10 5"
+                                       Margin="4"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=Starttime, StringFormat='dd/MM hh:mm'}" Width="*"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Team.MainImage}"
+                                       Width="40"
+                                       Height="40"/>
+                                <TextBlock Text="{Binding Team.TeamName}"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                        <Binding Path="Team_Away_Score" />
+                                        <Binding Path="Team_Home_Score" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Team1.MainImage}"
+                                       Width="40"
+                                        Height="40"/>
+                                <TextBlock Text="{Binding Team1.TeamName}"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=Location}" Width="*"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="View"
+                                    x:Name="BView"
+                                    Click="BView_Click"
+                                    Padding="14 2"
+                                    Visibility="{Binding StatusVisibility}">
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

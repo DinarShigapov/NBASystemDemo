@@ -1,0 +1,127 @@
+﻿<Page x:Class="NBASystem.Pages.PlayersMainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBASystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Players Main">
+
+    <Page.Resources>
+        <Style x:Key="DataGridCentering"
+               TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ListView d:ItemsSource="{d:SampleData ItemCount=5}"
+                      BorderThickness="0"
+                      VerticalAlignment="Center"
+                      Background="Transparent"
+                      x:Name="LVAlphabet" SelectionChanged="LVAlphabet_SelectionChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="Search: "/>
+                    <ComboBox Width="100"
+                              x:Name="CBYear"
+                              DisplayMemberPath="Name"
+                              SelectionChanged="CBYear_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                           Grid.Column="1">
+                    <TextBlock Text="Team: "/>
+                    <ComboBox Width="100"
+                              x:Name="CBTeam"
+                              DisplayMemberPath="TeamName"
+                              SelectionChanged="CBTeam_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                           Grid.Column="2">
+                    <TextBlock Text="PlayerName: "/>
+                    <TextBox Width="100"
+                             x:Name="TBPLayerName"
+                             TextChanged="TBPLayerName_TextChanged"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
+                  AutoGenerateColumns="False"
+                  x:Name="DGPlayer" 
+                  MouseDown="DGPlayer_MouseDoubleClick" 
+                  IsReadOnly="True"
+                  CellStyle="{StaticResource DataGridCentering}"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="/Resources/person.png" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" Width="*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="*"/>
+                <DataGridTextColumn Header="Team" Binding="{Binding Path=PlayerInTeam.Team}" Width="*"/>
+                <DataGridTextColumn Header="Position" Binding="{Binding Path=Position.Name}" Width="*"/>
+                <DataGridTextColumn Header="Height" Binding="{Binding Path=Height}" Width="*"/>
+                <DataGridTextColumn Header="Weight" Binding="{Binding Path=Weight}" Width="*"/>
+                <DataGridTextColumn Header="Experience" Binding="{Binding Path=Experience}" Width="*"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Path=CountryCode.Name}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal"  
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Grid.Row="2">
+            <Button Content=" &#60;&#60;" x:Name="BFullBack" Click="Button_Click" Width="50"></Button>
+            <Button Content=" &#60;" x:Name="BBack" Click="Button_Click" Width="50"></Button>
+            <TextBlock x:Name="ListTb" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="20"/>
+            <Button Content=" &#62;" x:Name="BNext" Width="50" Click="Button_Click"></Button>
+            <Button Content=" &#62;&#62;" x:Name="BFullNext" Click="Button_Click" Width="50"></Button>
+
+
+        </StackPanel>
+    </Grid>
+</Page>
